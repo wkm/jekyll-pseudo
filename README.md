@@ -20,7 +20,7 @@ Sample output:
       remaining <- quorumSize
       success <- False
       For Each host
-        result[host] <- send(host, propose(old,new))
+        result[host] <- send(host, propose(old, new))
         If result[host] = "ok"
           remaining--
 
@@ -29,9 +29,9 @@ Sample output:
 
       For Each result
         If success
-          send(host, confirm(old,new))
+          send(host, confirm(old, new))
         Else
-          send(host, cancel(old,new))
+          send(host, cancel(old, new))
     {% endpseudo %}
 
 ## Output
