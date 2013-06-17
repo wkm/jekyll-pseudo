@@ -1,3 +1,5 @@
+# require 'jekyll'
+require 'liquid'
 require "jekyll-pseudo/version"
 
 module Jekyll

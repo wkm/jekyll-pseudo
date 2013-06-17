@@ -1,7 +1,7 @@
-require_relative '../lib'
-require 'spec_helper'
+require_relative '../lib/jekyll-pseudo.rb'
+# require 'spec_helper'
 
-describe Grammar do
+describe Jekyll::Pseudo::Grammar do
   describe "#format" do
     it "formats symbols" do
       Grammar::format("For").should eql "s(For)"

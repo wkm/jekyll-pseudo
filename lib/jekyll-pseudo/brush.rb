@@ -25,6 +25,11 @@ module Jekyll
       def op(txt)
         raise 'not implemented'
       end
+
+      # render plain text
+      def plain(txt)
+        raise 'not implemented'
+      end
     end
   end
 end

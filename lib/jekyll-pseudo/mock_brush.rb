@@ -21,6 +21,10 @@ module Jekyll
         # FIXME: html conversion for some operators
         "<span class='op'>#{txt}</span>"
       end
+
+      def plain(txt)
+        txt
+      end
     end
   end
 end
