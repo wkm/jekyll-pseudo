@@ -27,6 +27,10 @@ module Jekyll
         "str(#{txt})"
       end
 
+      def indent(txt)
+        "i(#{txt})"
+      end
+
       def plain(txt)
         txt
       end

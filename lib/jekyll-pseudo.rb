@@ -5,19 +5,20 @@ require 'jekyll-pseudo/grammar'
 require 'jekyll-pseudo/html_brush'
 
 module Jekyll
-  class PseudoTag < Liquid::Tag
-  	@brush = Pseudo::HtmlBrush.new
-
+  class PseudoBlock < Liquid::Block
     def initialize(tag_name, text, tokens)
       super
-      @text = text
-      @text.gsub('')
+      @brush = Pseudo::HtmlBrush.new
+      @grammar = Pseudo::Grammar.new
     end
 
     def render(context)
+      @text = @nodelist.join('')
+      @formatted = @grammar.format(@text, @brush)
+      "<div class='pseudo'>#{@formatted}</div>"
     end
   end
 end
 
 
-Liquid::Template.register_tag('pseudo_code', Jekyll::PseudoTag)
+Liquid::Template.register_tag('pseudo', Jekyll::PseudoBlock)

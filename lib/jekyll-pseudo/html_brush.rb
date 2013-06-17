@@ -16,16 +16,29 @@ module Jekyll
       end
 
       def comment(txt)
-        "<span class='comment'>#{txt}</span>"
+        "<span class='comment'>/* #{txt.strip} */</span>"
       end
 
       def string(txt)
         "<span class='string'>#{txt}</span>"
       end
 
+      def indent(txt)
+        "<span class='indent'>#{txt}</span>"
+      end
+
       def op(txt)
+        symbol = case txt
+        when '<' then '&lt;'
+        when '>' then '&gt;'
+        when '<=' then '&le;'
+        when '>=' then '&ge;'
+        when '<-' then '&larr;'
+        when '->' then '&rarr;'
+        else txt
+        end
         # FIXME: html conversion for some operators
-        "<span class='op'>#{txt}</span>"
+        "<span class='op'>#{symbol}</span>"
       end
 
       def plain(txt)

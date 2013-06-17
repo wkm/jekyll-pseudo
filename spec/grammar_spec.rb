@@ -4,12 +4,12 @@ require_relative '../lib/jekyll-pseudo/mock_brush.rb'
 
 include Jekyll::Pseudo
 
-def format(txt)
-  g = Grammar.new
-  g.format(txt, MockBrush.new)
-end
-
 describe Grammar do
+  def format(txt)
+    g = Grammar.new
+    g.format(txt, MockBrush.new)
+  end
+  
   describe "#format" do
     it "ignores plain text" do
       format("plain text").should eql "plain text"
@@ -23,7 +23,7 @@ describe Grammar do
     end
 
     it "formats comments" do
-      format("oh #hi\n there").should eql "oh c(hi)\n there"
+      format("oh #hi\n there").should eql "oh c(hi)\ni( )there"
     end
 
     it "formats operators" do
@@ -35,9 +35,9 @@ describe Grammar do
     end
 
     it 'formats functions' do
-      format('fn(b,c)').should eql('fn(fn)(b,c)')
-      format('fn[b,c]').should eql('fn(fn)[b,c]')
-      format('fn{b,c}').should eql('fn(fn){b,c}')
+      format('fn(b,c)').should eql('fn(fn)op(()b,cop())')
+      format('fn[b,c]').should eql('fn(fn)op([)b,cop(])')
+      format('fn{b,c}').should eql('fn(fn)op({)b,cop(})')
     end
   end
 end

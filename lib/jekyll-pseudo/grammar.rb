@@ -10,8 +10,9 @@ module Jekyll
           [/\b([A-Z]\w+)/, :sym],
           [/(\w+)(?=[({\[])/, :fn],
           [/(\".*?\")/, :string],
-          [/([-+<>*])/, :op]
-          # [/[a-z][a-zA-Z]*/, :var]
+          [/(<-|->|\+\+|<=|>=|--)/, :op], # try these operations first
+          [/([-()\[\]{}=<>+])/, :op],     # and these second
+          [/^(\s)+/, :indent]
         ]
         
         txt.strip!
