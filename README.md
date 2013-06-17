@@ -16,7 +16,7 @@ Sometimes you don't want to use a particular programming language to demonstrate
 Sample output:
 
     Function swap(old, new)
-      remaining <- quorum_size  @1
+      remaining <- quorum_size  
       success <- false
 
       # propose a swap
