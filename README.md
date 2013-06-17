@@ -1,7 +1,9 @@
 # jekyll-pseudo
 A pseudocode/algorithm formatter for sites powered by jekyll.
 
-Sometimes you don't want to use a particular programming language to demonstrate a concept because of the syntactic overhead. Jekyll-Pseudo lets you use a gently formatted free-formated representation.
+Sometimes you don't want to use a particular programming language to
+demonstrate a concept because of the syntactic overhead. Jekyll-Pseudo lets
+you use a gently styled free-formated representation.
 
 ## Language
 * indentation is preserved
