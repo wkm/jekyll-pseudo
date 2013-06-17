@@ -26,6 +26,11 @@ module Jekyll
         raise 'not implemented'
       end
 
+      # format a string
+      def string(txt)
+        raise 'not implemented'
+      end
+
       # render plain text
       def plain(txt)
         raise 'not implemented'

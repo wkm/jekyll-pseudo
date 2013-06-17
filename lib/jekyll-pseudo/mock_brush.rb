@@ -1,25 +1,30 @@
+require 'jekyll-pseudo/brush'
+
 module Jekyll
   module Pseudo
     class MockBrush < Brush
       def sym(txt)
-        "<span class='symbol'>#{txt}</span>"
+        "sym(#{txt})"
       end
 
       def fn(txt)
-        "<span class='function'>#{txt}</span>"
+        "fn(#{txt})"
       end
 
       def var(txt)
-        "<span class='variable'>#{var}</span>"
+        "var(#{var})"
       end
 
       def comment(txt)
-        "<span class='comment'>#{txt}</span>"
+        "c(#{txt})"
       end
 
       def op(txt)
-        # FIXME: html conversion for some operators
-        "<span class='op'>#{txt}</span>"
+        "op(#{txt})"
+      end
+
+      def string(txt)
+        "str(#{txt})"
       end
 
       def plain(txt)

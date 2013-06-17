@@ -1,6 +1,8 @@
+require 'jekyll-pseudo/brush'
+
 module Jekyll
   module Pseudo
-    class HtmlBrush < Brush
+    class HtmlBrush < Jekyll::Pseudo::Brush
       def sym(txt)
         "<span class='symbol'>#{txt}</span>"
       end
@@ -15,6 +17,10 @@ module Jekyll
 
       def comment(txt)
         "<span class='comment'>#{txt}</span>"
+      end
+
+      def string(txt)
+        "<span class='string'>#{txt}</span>"
       end
 
       def op(txt)
