@@ -15,26 +15,28 @@ Sometimes you don't want to use a particular programming language to demonstrate
 
 Sample output:
 
+    {% pseudo %}
     Function swap(old, new)
-      remaining <- quorum_size  
-      success <- false
-
-      # propose a swap
+      remaining <- quorumSize
+      success <- False
       For Each host
-        result[host] <- send(host, propose[old, new])
+        result[host] <- send(host, propose(old,new))
         If result[host] = "ok"
           remaining--
 
-      # was quorum attained
-      If remaining > 1 + quorumSize / 2
-        success <- true
+      If remaining > 1+quorumSize/2
+        success <- True
 
-      # execute the swap
       For Each result
         If success
-          send(host, confirm[old,new])
+          send(host, confirm(old,new))
         Else
-          send(host, cancel[old,new])
+          send(host, cancel(old,new))
+    {% endpseudo %}
 
 ## Output
 Output is annotated with `<span>` classes and can be styled using CSS. Typically keywords are made bold and variables are italicized.
+
+With a bit of formatting, the above code becomes:
+
+![Image](https://raw.github.com/wkm/jekyll-pseudo/master/doc/samplecode.png)
