@@ -1,4 +1,3 @@
-# require 'jekyll'
 require 'liquid'
 require 'jekyll-pseudo/version'
 require 'jekyll-pseudo/grammar'
