@@ -12,7 +12,7 @@ module Jekyll
           [/(\".*?\")/, :string],
           [/(<-|->|\+\+|<=|>=|--)/, :op], # try these operations first
           [/([-()\[\]{}=<>+])/, :op],     # and these second
-          [/^(\s)+/, :indent]
+          [/^(\s+)/, :indent]
         ]
         
         txt.strip!

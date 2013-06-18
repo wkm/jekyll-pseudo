@@ -24,6 +24,7 @@ module Jekyll
       end
 
       def indent(txt)
+        txt.gsub! "\t", '   '
         "<span class='indent'>#{txt}</span>"
       end
 
