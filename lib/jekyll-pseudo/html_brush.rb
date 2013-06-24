@@ -36,6 +36,7 @@ module Jekyll
         when '>=' then '&ge;'
         when '<-' then '&larr;'
         when '->' then '&rarr;'
+        when '*' then '&times;'
         else txt
         end
         # FIXME: html conversion for some operators
