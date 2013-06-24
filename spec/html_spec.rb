@@ -25,6 +25,7 @@ describe HtmlBrush do
 
     it "operator converstions" do
       format("<").should eql "<span class='op'>&#12296;</span>"
+      format("*").should eql "<span class='op'>&times;</span>"
     end
   end
 end

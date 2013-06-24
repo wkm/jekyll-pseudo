@@ -11,7 +11,7 @@ module Jekyll
           [/(\w+)(?=[({\[])/, :fn],
           [/(\".*?\")/, :string],
           [/(<-|->|\+\+|<=|>=|--)/, :op], # try these operations first
-          [/([-()\[\]{}=<>+])/, :op],     # and these second
+          [/([-()\[\]{}=<>+*])/, :op],     # and these second
           [/^(\s+)/, :indent]
         ]
         
