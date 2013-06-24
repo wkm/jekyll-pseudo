@@ -22,5 +22,9 @@ describe HtmlBrush do
     it "comment span" do
       format("# hi!").should eql "<span class='comment'>/* hi! */</span>"
     end
+
+    it "operator converstions" do
+      format("<").should eql "<span class='op'>&#12296;</span>"
+    end
   end
 end

@@ -30,8 +30,8 @@ module Jekyll
 
       def op(txt)
         symbol = case txt
-        when '<' then '&lt;'
-        when '>' then '&gt;'
+        when '<' then '&#12296;'
+        when '>' then '&#12297;'
         when '<=' then '&le;'
         when '>=' then '&ge;'
         when '<-' then '&larr;'
