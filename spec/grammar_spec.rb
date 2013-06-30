@@ -1,6 +1,5 @@
 require_relative '../lib/jekyll-pseudo.rb'
 require_relative '../lib/jekyll-pseudo/mock_brush.rb'
-# require 'spec_helper'
 
 include Jekyll::Pseudo
 
@@ -34,10 +33,21 @@ describe Grammar do
       format('oh "what" a world!').should eql 'oh str("what") a world!'
     end
 
+    it 'formats variables' do
+      format('x_0').should eql ('xsub(0)')
+      format('x_i').should eql ('xsub(i)')
+    end    
+
     it 'formats functions' do
       format('fn(b,c)').should eql('fn(fn)op(()b,cop())')
       format('fn[b,c]').should eql('fn(fn)op([)b,cop(])')
       format('fn{b,c}').should eql('fn(fn)op({)b,cop(})')
+    end
+
+    it 'strips leading whitespace' do
+      format("\thi\n\tthere").should eql("hi\nthere")
+      format("\thi\n\t\tthere").should eql("hi\n\tthere")
+      format("\t\thi\n\tthere").should eql("\thi\nthere")
     end
   end
 end

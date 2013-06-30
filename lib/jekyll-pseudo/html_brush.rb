@@ -11,8 +11,12 @@ module Jekyll
         "<span class='function'>#{txt}</span>"
       end
 
-      def var(txt)
-        "<span class='variable'>#{var}</span>"
+      def var(txt, sub)
+        if sub
+          "#{txt}<sub>#{sub.slice(1,sub.size)}</sub>"
+        else
+          "#{txt}"
+        end
       end
 
       def comment(txt)
@@ -37,6 +41,8 @@ module Jekyll
         when '<-' then '&larr;'
         when '->' then '&rarr;'
         when '*' then '&times;'
+        when '[' then '&#65339;'
+        when ']' then '&#65341;'
         else txt
         end
         # FIXME: html conversion for some operators

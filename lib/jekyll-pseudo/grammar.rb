@@ -1,7 +1,7 @@
 module Jekyll
   module Pseudo
     class Grammar
-      # format a block of text, giving html as output
+      # parse a block of text, using the given brush to format output (works in a single pass)
       def format(txt, brush)
         results = []
 
@@ -10,14 +10,15 @@ module Jekyll
           [/\b([A-Z]\w+)/, :sym],
           [/(\w+)(?=[({\[])/, :fn],
           [/(\".*?\")/, :string],
-          [/(<-|->|\+\+|<=|>=|--)/, :op], # try these operations first
+          [/(<-|->|\+\+|<=|>=|--)/, :op],  # try these operators first
           [/([-()\[\]{}=<>+*])/, :op],     # and these second
+          [/\b([a-z][a-zA-Z0-9]*)(_[a-zA-Z0-9]+)?/, :var],
           [/^(\s+)/, :indent]
         ]
         
         txt.strip!
 
-        # lazy man's parser (we don't do that backtracking business)
+        # lazy man's parser (we don't do any of that silly backtracking)
         cursor = 0
         while true
           matches = mappings.map do |pair|
@@ -36,10 +37,11 @@ module Jekyll
           if upto[0] != nil
             results << brush.plain(txt.slice(cursor, upto[0].begin(0)-cursor))
 
-            match = upto[0][1]
             # which match?
-            results << brush.method(upto[1]).call(match)
-            cursor = upto[0].end(1)
+            captures = upto[0].captures
+            puts "#{upto[1]}.call(#{captures.inspect})"
+            results << brush.method(upto[1]).call(*captures)
+            cursor = upto[0].end(0)
           else
             # no matches remaining
             results << brush.plain(txt.slice(cursor, txt.size))
@@ -47,8 +49,6 @@ module Jekyll
           end
         end
 
-        # puts "FINAL: #{results.inspect}"
-        # puts "     = #{results.join('').inspect}"
         return results.join('')
       end
     end

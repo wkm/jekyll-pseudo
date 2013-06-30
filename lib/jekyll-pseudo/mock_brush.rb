@@ -11,8 +11,12 @@ module Jekyll
         "fn(#{txt})"
       end
 
-      def var(txt)
-        "var(#{var})"
+      def var(txt, sub)
+        if sub
+          "#{txt}sub(#{sub.slice(1,sub.size)})"
+        else
+          txt
+        end
       end
 
       def comment(txt)
