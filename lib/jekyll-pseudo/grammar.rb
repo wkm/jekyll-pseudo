@@ -18,6 +18,18 @@ module Jekyll
         
         txt.strip!
 
+        # replace tabs with three spaces
+        txt.gsub! /^\t/, '   '
+
+        # count leading whitespace
+        ws = txt.gsub.scan(/^ +/).map do |leading|
+          leading.size
+        end
+        leading = ws.min
+
+        # remove leading whitespace of the given length
+        txt.gsub! /^ {#{leading}}/, ''
+
         # lazy man's parser (we don't do any of that silly backtracking)
         cursor = 0
         while true
