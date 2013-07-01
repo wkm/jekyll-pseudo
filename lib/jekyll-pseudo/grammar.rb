@@ -15,20 +15,21 @@ module Jekyll
           [/\b([a-z][a-zA-Z0-9]*)(_[a-zA-Z0-9]+)?/, :var],
           [/^(\s+)/, :indent]
         ]
-        
-        txt.strip!
 
         # replace tabs with three spaces
         txt.gsub! /^\t/, '   '
 
         # count leading whitespace
-        ws = txt.gsub.scan(/^ +/).map do |leading|
+        ws = txt.scan(/^ */).map do |leading|
           leading.size
         end
-        leading = ws.min
+        leading = (ws.min or 0)
 
         # remove leading whitespace of the given length
-        txt.gsub! /^ {#{leading}}/, ''
+        if leading > 0
+          r = /^ {#{leading}}/
+          txt.gsub! r, ''
+        end
 
         # lazy man's parser (we don't do any of that silly backtracking)
         cursor = 0
@@ -51,7 +52,6 @@ module Jekyll
 
             # which match?
             captures = upto[0].captures
-            puts "#{upto[1]}.call(#{captures.inspect})"
             results << brush.method(upto[1]).call(*captures)
             cursor = upto[0].end(0)
           else

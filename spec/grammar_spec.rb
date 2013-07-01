@@ -46,8 +46,8 @@ describe Grammar do
 
     it 'strips leading whitespace' do
       format("\thi\n\tthere").should eql("hi\nthere")
-      format("\thi\n\t\tthere").should eql("hi\n\tthere")
-      format("\t\thi\n\tthere").should eql("\thi\nthere")
+      format("\thi\n\t\tthere").should eql("hi\ni(\t)there")
+      format("\t\thi\n\tthere").should eql("i(\t)hi\nthere")
     end
   end
 end
