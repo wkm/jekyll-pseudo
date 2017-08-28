@@ -4,7 +4,7 @@ require 'jekyll-pseudo/grammar'
 require 'jekyll-pseudo/html_brush'
 
 module Jekyll
-  class PseudoBlock < Liquid::Block
+  class PseudoTag < Liquid::Tag
     def initialize(tag_name, text, tokens)
       super
       @brush = Pseudo::HtmlBrush.new
@@ -20,4 +20,4 @@ module Jekyll
 end
 
 
-Liquid::Template.register_tag('pseudo', Jekyll::PseudoBlock)
+Liquid::Template.register_tag('pseudo', Jekyll::PseudoTag)
